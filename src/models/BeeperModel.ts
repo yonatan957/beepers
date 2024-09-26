@@ -2,7 +2,7 @@ import beeperEnum from '../enums/beeperStatusEnum'
 export default class Beeper{
     public id:number
     public status:beeperEnum
-    public created_At?:Date
+    public created_At:Date
     public detonated_At?:Date
     public latitude?:number
     public longitude?:number
@@ -13,5 +13,6 @@ export default class Beeper{
         toString()
         .split(".")[1])  
         this.status = beeperEnum.manufactured  
+        this.created_At = new Date
     }
 }

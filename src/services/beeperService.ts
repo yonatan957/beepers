@@ -19,23 +19,47 @@ export default class BeeperService{
         return beepers
     }
 
-    public static async findById(id:number):Promise<Beeper|undefined>{
+    public static async findBeeperById(id:number):Promise<Beeper|undefined>{
         let beepers:Beeper[] = await getFileData<Beeper>('beepers') as Beeper[]
         return beepers.find(b => b.id === id)
     }
 
-    public static async changeStatus(id:number, status:beeperEnum):Promise<boolean>{
+    public static async changeStatus(status:beeperEnum, id:number, lat?:number, long?:number):Promise<boolean>{
         let beepers:Beeper[] = await getFileData<Beeper>('beepers') as Beeper[]
-        let beeper = beepers.find(b => b.id === id)
+        let beeperindex = beepers.findIndex(b => b.id === id)
+        let beeper = beepers[beeperindex]
         if(!beeper) return false
+        
+        if (status === beeperEnum.deployed){
+            if (!lat || !long) return false
+            beeper.latitude = lat
+            beeper.longitude = long
+            this.explodeBeeper(beeperindex, beepers)
+        }
+
         beeper.status = status
+
         return await saveFileData('beepers', beepers)
     }
+
+    public static explodeBeeper(index:number, beepers:Beeper[]){
+        setTimeout(() => {
+            beepers[index].status = beeperEnum.detonated
+            beepers[index].detonated_At = new Date
+            saveFileData('beepers', beepers)
+        }, 10000);
+    }
+
     public static async deleteById(id:number):Promise<boolean>{
         let beepers:Beeper[] = await getFileData<Beeper>('beepers') as Beeper[]
         let index = beepers.findIndex(b => b.id === id)
         if(index === -1) return false
         beepers.splice(index, 1)
         return await saveFileData('beepers', beepers)
+    }
+
+    public static async findByStatus(beeperEnum: beeperEnum):Promise<Beeper[]>{
+        let beepers:Beeper[] = await getFileData<Beeper>('beepers') as Beeper[]
+        return beepers.filter(b => b.status === beeperEnum)
     }
 }

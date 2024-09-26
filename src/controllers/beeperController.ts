@@ -71,12 +71,13 @@ router.put("/:id/status", async (req:Request, res: Response):Promise<void> =>{
 })
 
 //delete a  specific beeper by id
-router.delete("", async (req:Request, res: Response):Promise<void> =>{
+router.delete("/:id", async (req:Request, res: Response):Promise<void> =>{
     try {
+        const Success = await BeeperService.deleteById(Number(req.params.id))
+        if(!Success){throw new Error("not deleted") }
         res.json({
           err: false,
-          message: "Login Successful",
-          data: undefined,
+          message: "delete Successful",
         });
       } catch (arr) {
         res.status(404).json({
@@ -88,7 +89,7 @@ router.delete("", async (req:Request, res: Response):Promise<void> =>{
 })
 
 // get beepers by status
-router.get("", async (req:Request, res: Response):Promise<void> =>{
+router.get("/status/:status", async (req:Request, res: Response):Promise<void> =>{
     try {
         res.json({
           err: false,

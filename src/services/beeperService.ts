@@ -34,7 +34,8 @@ export default class BeeperService{
         if(stautses.indexOf(status) <= stautses.indexOf(beeper.status)){return false}
 
         if (status === beeperEnum.deployed){
-            if (!lat || !long) return false
+            if (!(lat && long)) return false
+            if (!(35.04438<= long && long <= 36.59793 && 33.01048 <= lat && lat <= 34.6793)) return false
             beeper.latitude = lat
             beeper.longitude = long
             beeper.status = status

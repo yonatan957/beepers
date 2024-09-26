@@ -53,11 +53,11 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
 //update the status of a specific beeper by id
 router.put("/:id/status",async (req: Request, res: Response): Promise<void> => {
     try {
-      const {LAT, LON, status} = req.body
+      const {lat, lon, status} = req.body
       const statusEnum = beeperEnum[status as "manufactured"]
       if (!statusEnum) throw new Error("invalid")
       
-      const Success = await BeeperService.changeStatus(statusEnum ,Number(req.params.id), Number(LAT), Number(LON));
+      const Success = await BeeperService.changeStatus(statusEnum ,Number(req.params.id), Number(lat), Number(lon));
       if (!Success) throw new Error("invalid")
 
       res.json({

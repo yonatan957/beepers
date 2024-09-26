@@ -1,19 +1,47 @@
 [
   {
-    "name": "samvix2",
-    "id": 24428776280181984,
-    "status": "deployed",
-    "created_At": "2024-09-26T12:22:23.633Z",
-    "latitude": 35.78674,
-    "longitude": 34.59708
+    "name": "samvix5",
+    "id": 5874921565907378,
+    "status": "detonated",
+    "created_At": "2024-09-26T14:21:16.481Z",
+    "latitude": 34.198116317776766,
+    "longitude": 35.776443170614655,
+    "detonated_At": "2024-09-26T14:21:47.073Z"
   },
   {
-    "name": "samvix3",
-    "id": 6124405186447031,
+    "name": "samvix77",
+    "id": 9861670262773480,
     "status": "detonated",
-    "created_At": "2024-09-26T12:22:29.354Z",
-    "latitude": 35.78674,
-    "longitude": 34.59708,
-    "detonated_At": "2024-09-26T13:06:56.155Z"
+    "created_At": "2024-09-26T14:22:35.741Z",
+    "latitude": 33.73981494491271,
+    "longitude": 35.584219782338074,
+    "detonated_At": "2024-09-26T14:23:03.741Z"
+  },
+  {
+    "name": "dddd",
+    "id": 2517202097808038,
+    "status": "detonated",
+    "created_At": "2024-09-26T14:23:18.092Z",
+    "latitude": 33.68681047003171,
+    "longitude": 35.45789983629059,
+    "detonated_At": "2024-09-26T14:23:39.520Z"
+  },
+  {
+    "name": "samvix000",
+    "id": 861143037892004,
+    "status": "detonated",
+    "created_At": "2024-09-26T14:24:25.974Z",
+    "latitude": 33.49602720360379,
+    "longitude": 35.48017906307672,
+    "detonated_At": "2024-09-26T14:25:45.779Z"
+  },
+  {
+    "name": "bbbbbb",
+    "id": 5503328666936014,
+    "status": "detonated",
+    "created_At": "2024-09-26T14:26:31.502Z",
+    "latitude": 33.83842571898821,
+    "longitude": 35.62217271488875,
+    "detonated_At": "2024-09-26T14:27:23.524Z"
   }
 ]

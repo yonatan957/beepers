@@ -40,10 +40,9 @@ router.get("/", async (req:Request, res: Response):Promise<void> =>{
 //get details of a specific beeper by id
 router.get("/:id", async (req:Request, res: Response):Promise<void> =>{
     try {
+        const beeper = await BeeperService.findById(Number(req.params.id))
         res.json({
-          err: false,
-          message: "Login Successful",
-          data: undefined,
+          beeper
         });
       } catch (arr) {
         res.status(404).json({

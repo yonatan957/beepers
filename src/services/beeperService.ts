@@ -16,4 +16,9 @@ export default class BeeperService{
         const beepers = await getFileData<Beeper>('beepers') as Beeper[]
         return beepers
     }
+
+    public static async findById(id:number):Promise<Beeper|undefined>{
+        let beepers:Beeper[] = await getFileData<Beeper>('beepers') as Beeper[]
+        return beepers.find(b => b.id === id)
+    }
 }

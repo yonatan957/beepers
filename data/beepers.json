@@ -2,7 +2,22 @@
   {
     "name": "david",
     "id": 7224802275424658,
+    "status": "deployed",
+    "created_At": "2024-09-26T09:35:13.485Z",
+    "latitude": 35.78674,
+    "longitude": 34.59708,
+    "detonated_At": "2024-09-26T11:39:01.531Z"
+  },
+  {
+    "name": "jijisd",
+    "id": 635557937335868,
     "status": "manufactured",
-    "created_At": "2024-09-26T09:35:13.485Z"
+    "created_At": "2024-09-26T11:41:12.476Z"
+  },
+  {
+    "name": "jijireeeerisd",
+    "id": 8582074197964988,
+    "status": "manufactured",
+    "created_At": "2024-09-26T11:41:22.407Z"
   }
 ]

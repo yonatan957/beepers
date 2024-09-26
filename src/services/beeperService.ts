@@ -34,15 +34,21 @@ export default class BeeperService{
             if (!lat || !long) return false
             beeper.latitude = lat
             beeper.longitude = long
-            this.explodeBeeper(beeperindex, beepers)
+            await new Promise<void>((res, req) => {
+                setTimeout(() => {
+                    beeper.status = beeperEnum.detonated
+                    beeper.detonated_At = new Date
+                    saveFileData('beepers', beepers)
+                    res()
+                }, 10000);
+            });
         }
-
         beeper.status = status
 
         return await saveFileData('beepers', beepers)
     }
 
-    public static explodeBeeper(index:number, beepers:Beeper[]){
+    public static async explodeBeeper(index:number, beepers:Beeper[]):Promise<void>{
         setTimeout(() => {
             beepers[index].status = beeperEnum.detonated
             beepers[index].detonated_At = new Date

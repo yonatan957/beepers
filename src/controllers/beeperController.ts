@@ -11,8 +11,7 @@ router.post("", async (req: Request, res: Response): Promise<void> => {
     let { name } = req.body;
     BeeperService.addBeeper(name);
     res.json({
-      err: false,
-      message: "added Successfuly",
+      message: "added Successfuly"
     });
   } catch (arr) {
     res.status(404).json({
@@ -27,9 +26,7 @@ router.post("", async (req: Request, res: Response): Promise<void> => {
 router.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const beepers: Beeper[] = await BeeperService.getAllBeepers();
-    res.json({
-      beepers,
-    });
+    res.json(beepers);
   } catch (arr) {
     res.status(404).json({
       err: true,
@@ -43,9 +40,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
 router.get("/:id", async (req: Request, res: Response): Promise<void> => {
   try {
     const beeper = await BeeperService.findBeeperById(Number(req.params.id));
-    res.json({
-      beeper,
-    });
+    res.json(beeper)
   } catch (arr) {
     res.status(404).json({
       err: true,
@@ -58,19 +53,20 @@ router.get("/:id", async (req: Request, res: Response): Promise<void> => {
 //update the status of a specific beeper by id
 router.put("/:id/status",async (req: Request, res: Response): Promise<void> => {
     try {
-      const {LAT, LON, Status} = req.body
-      const statusEnum = beeperEnum[Status as "manufactured"]
+      const {LAT, LON, status} = req.body
+      const statusEnum = beeperEnum[status as "manufactured"]
+      if (!statusEnum) throw new Error("invalid")
+      
       const Success = await BeeperService.changeStatus(statusEnum ,Number(req.params.id), Number(LAT), Number(LON));
+      if (!Success) throw new Error("invalid")
+
       res.json({
-        err: false,
-        message: "Login Successful",
-        data: undefined,
+        message: "change Successfuly",
       });
     } catch (arr) {
       res.status(404).json({
         err: true,
         message: "Invalid",
-        data: null,
       });
     }
   }
@@ -84,14 +80,12 @@ router.delete("/:id", async (req: Request, res: Response): Promise<void> => {
       throw new Error("not deleted");
     }
     res.json({
-      err: false,
       message: "delete Successful",
     });
   } catch (arr) {
     res.status(404).json({
       err: true,
-      message: "Invalid",
-      data: null,
+      message: "Invalid"
     });
   }
 });
@@ -104,14 +98,11 @@ router.get(
       const status = beeperEnum[req.params.status as "manufactured"]
       console.log(status)
       const beepers:Beeper[] = await BeeperService.findByStatus(status)
-      res.json({
-        beepers
-      });
+      res.json(beepers);
     } catch (arr) {
       res.status(404).json({
         err: true,
-        message: "Invalid",
-        data: null,
+        message: "Invalid"
       });
     }
   }

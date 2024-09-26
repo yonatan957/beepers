@@ -1,5 +1,7 @@
-class beeper{
+import beeperEnum from '../enums/beeperStatusEnum'
+export default class Beeper{
     public id:number
+    public status:beeperEnum
     public created_At?:Date
     public detonated_At?:Date
     public latitude?:number
@@ -7,6 +9,9 @@ class beeper{
     constructor(
         public name:string
     ){
-        this.id = Math.floor(Math.random() * 1000)
+        this.id = Number(Math.random().
+        toString()
+        .split(".")[1])  
+        this.status = beeperEnum.manufactured  
     }
 }

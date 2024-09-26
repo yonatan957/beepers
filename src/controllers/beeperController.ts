@@ -1,14 +1,16 @@
 import exp, { Router, Request, Response } from "express";
-
+import BeeperService from "../services/beeperService";
+import Beeper from "../models/BeeperModel";
 const router:Router = exp.Router();
 
 //create a new beeper
 router.post("", async (req:Request, res: Response):Promise<void> =>{
     try {
+        let {name} = req.body
+        BeeperService.addBeeper(name)
         res.json({
           err: false,
-          message: "Login Successful",
-          data: undefined,
+          message: "added Successfuly",
         });
       } catch (arr) {
         res.status(404).json({
@@ -20,12 +22,11 @@ router.post("", async (req:Request, res: Response):Promise<void> =>{
 })
 
 // get all beepers
-router.get("", async (req:Request, res: Response):Promise<void> =>{
+router.get("/", async (req:Request, res: Response):Promise<void> =>{
     try {
+        const beepers:Beeper[] = await BeeperService.getAllBeepers()
         res.json({
-          err: false,
-          message: "Login Successful",
-          data: undefined,
+          beepers
         });
       } catch (arr) {
         res.status(404).json({

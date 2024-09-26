@@ -5,3 +5,5 @@ enum beeperStatus{
     deployed = "deployed",
     detonated = "detonated"
 }
+
+export default beeperStatus
